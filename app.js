@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
 
 app.get('/restaurants/:restaurant_id', (req, res) => {
   const restaurant = restaurantList.results.find(restaurant => restaurant.id.toString() === req.params.restaurant_id)
-  res.render('show', { restaurant: restaurant })
+  res.render('show', { restaurant })
 })
 
 app.get('/search', (req, res) => {
@@ -22,7 +22,7 @@ app.get('/search', (req, res) => {
   const restaurants = restaurantList.results.filter(restaruant => {
     return restaruant.name.toLocaleLowerCase().includes(keyword.toLocaleLowerCase()) || restaruant.category.includes(keyword)
   })
-  res.render('index', { restaurants: restaurants, keyword: keyword })
+  res.render('index', { restaurants, keyword })
 })
 
 app.listen(port, () => {
